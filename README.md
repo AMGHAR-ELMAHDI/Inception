@@ -8,11 +8,12 @@ Traditionally, the init process was implemented using a program called init, but
 The init process, or its equivalent, is started directly by the kernel during the boot process and has certain privileges and responsibilities. It performs essential system initialization tasks, such as mounting filesystems, setting up network interfaces, and launching system services.
 PID 1 has unique characteristics compared to other processes. It cannot be terminated like regular processes, as doing so would result in a system shutdown or restart. Additionally, PID 1 is often the recipient of certain signals that have system-wide effects, such as the SIGTERM signal for system shutdown.
 In summary, PID 1 refers to the process identifier assigned to the init process or system initialization process. It is a special process responsible for managing other processes and performing critical system initialization tasks.
-
+----------------------------------------------------------------------------------------
 PHP-FPM:
 
 PHP-FPM (FastCGI Process Manager) is a PHP FastCGI implementation that provides a high-performance alternative to the traditional PHP CGI interface. It is commonly used in conjunction with web servers like NGINX or Apache to handle PHP requests.
 PHP-FPM works by managing a pool of PHP worker processes that handle incoming PHP requests. This approach is more efficient compared to starting a new PHP process for each request, as PHP-FPM keeps the worker processes alive and ready to handle multiple requests.
+----------------------------------------------------------------------------------------
 
 
 NGINX with TLSv1.2:
@@ -42,6 +43,30 @@ ssl_protocols TLSv1.2; sets the supported protocols to TLS 1.2 only.
 ssl_ciphers HIGH:!aNULL:!MD5; defines the allowed ciphers for the TLS connection. This example disables weak ciphers like NULL and MD5.
 ssl_certificate and ssl_certificate_key specify the paths to your SSL/TLS certificate and private key files respectively.
 Make sure to replace example.com, /path/to/ssl_certificate.crt, and /path/to/ssl_certificate.key with the appropriate values for your setup.
+----------------------------------------------------------------------------------------
 
-After updating the NGINX configuration, you'll need to restart or reload NGINX for the changes to take effect.
+
+CMD ["nginx", "-g", "daemon off;"]
+
+The line you provided appears to be a Docker command that is typically used in a Dockerfile to specify the command to run when the Docker container starts. In this case, it is running the NGINX web server with the arguments "-g" and "daemon off;".
+
+To break it down:
+
+CMD is a Docker instruction that specifies the command to run when the container starts.
+"nginx" is the command being executed, which starts the NGINX web server.
+"-g" is an argument for the NGINX command.
+"daemon off;" is another argument for the NGINX command. It is used to prevent NGINX from running in the background as a daemon, allowing it to run in the foreground so that Docker can manage the container.
+----------------------------------------------------------------------------------------
+
+docker build . -t nginx:1.0
+
+The command is used to build a Docker image using a Dockerfile and tag it with the name "nginx" and version "1.0". Here's a breakdown of the command:
+
+docker build: This is the command to build a Docker image.
+.: The dot represents the build context, which is the current directory containing the Dockerfile and any other files required during the build process. In this case, it implies that the Dockerfile is located in the current directory.
+-t nginx:1.0: The -t flag is used to specify a name and optionally a tag for the Docker image. In this case, the image will be tagged as "nginx" with the version "1.0". The format is name:tag.
+When you run this command, Docker will search for a Dockerfile in the current directory and use it as a blueprint to build the image. It will execute the instructions in the Dockerfile, including any additional steps such as copying files, installing dependencies, and configuring the NGINX server.
+
+After the build process completes successfully, you will have a Docker image named "nginx" with the version "1.0". You can then use this image to create and run containers based on it using the docker run command.
+----------------------------------------------------------------------------------------
 
