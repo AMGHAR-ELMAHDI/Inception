@@ -1,10 +1,10 @@
 FROM    debian:oldstable
 
-COPY    . ./app
+# COPY    . ./app
 
-WORKDIR /app/Webserv/
+WORKDIR /app/
 
-RUN    apt-get update -y && apt-get install -y vim build-essential cmake libboost-all-dev libc6-dev clang
+RUN    apt-get update -y && apt-get install -y vim 
 
 ENV     CC=/usr/bin/clang
 ENV     CXX=/usr/bin/clang++
