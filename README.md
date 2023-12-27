@@ -98,3 +98,8 @@ This change can be useful if we want to access the MariaDB/MySQL server from oth
 ----------------------------------------------------------------------------------------
 
 
+docker build . -t mariadb:1.0
+docker run -d mariadb:1.0
+docker exec -it 359 mysql -u root -p -e "SHOW DATABASES;"
+
+docker system prune -a
