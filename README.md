@@ -70,3 +70,31 @@ When you run this command, Docker will search for a Dockerfile in the current di
 After the build process completes successfully, you will have a Docker image named "nginx" with the version "1.0". You can then use this image to create and run containers based on it using the docker run command.
 ----------------------------------------------------------------------------------------
 
+sed -i "s|bind-address            = 127.0.0.1|bind-address            = 0.0.0.0|g" /etc/mysql/mariadb.conf.d/50-server.cnf
+
+The command using the sed utility to modify a configuration file for MariaDB/MySQL. Specifically, it replaces the line bind-address = 127.0.0.1 with bind-address = 0.0.0.0 in the file located at /etc/mysql/mariadb.conf.d/50-server.cnf.
+
+Breakdown of the command:
+
+sed: The command-line utility used for text manipulation.
+
+-i: This option tells sed to edit the file in-place, meaning the changes will be made directly to the file instead of printing the modified output to the console.
+
+"s|bind-address = 127.0.0.1|bind-address = 0.0.0.0|g": The string enclosed in double-quotes is the sed expression. It consists of three parts separated by the | character:
+
+s: The substitute command in sed for replacing text.
+bind-address = 127.0.0.1: The original text to be replaced.
+bind-address = 0.0.0.0: The new text that will replace the original text.
+g: This is a flag indicating that the substitution should be performed globally (i.e., replace all occurrences in the file, not just the first one).
+/etc/mysql/mariadb.conf.d/50-server.cnf: The path to the configuration file that will be modified.
+->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+The change we made with the sed command modifies the bind-address setting in the MariaDB/MySQL configuration file.
+
+By default, the bind-address is set to 127.0.0.1, which means the database server listens only on the loopback interface, allowing connections only from the local machine.
+
+When we replace bind-address = 127.0.0.1 with bind-address = 0.0.0.0, it changes the configuration to make the database server listen on all available network interfaces. In other words, it allows incoming connections from any IP address, including remote machines.
+
+This change can be useful if we want to access the MariaDB/MySQL server from other computers on the network or allow remote connections. However, it also introduces potential security risks, as it exposes the database server to external connections. It's important to consider the security implications and take appropriate measures, such as setting up a firewall or configuring access controls, to protect our database server from unauthorized access.
+----------------------------------------------------------------------------------------
+
+
