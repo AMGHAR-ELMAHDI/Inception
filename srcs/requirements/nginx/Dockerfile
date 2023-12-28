@@ -1,8 +1,7 @@
 FROM    debian:oldstable
 
-RUN     apt update -y && apt upgrade -y && apt install -y vim curl git zsh systemctl
-RUN     apt install -y nginx openssl 
-RUN     rm /etc/nginx/sites-available/default && mkdir -p /etc/nginx/ssl 
+RUN     apt update -y && apt upgrade -y && apt install -y nginx openssl
+RUN     rm -rf /etc/nginx/sites-available/default && mkdir -p /etc/nginx/ssl 
 
 COPY    ./conf/nginx.conf /etc/nginx/nginx.conf
 COPY    ./tools/index.html /etc/nginx/

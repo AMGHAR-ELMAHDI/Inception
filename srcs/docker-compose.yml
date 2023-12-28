@@ -1,0 +1,14 @@
+services:
+
+  nginx:
+    build: ./requirements/nginx
+    image: nginx:1.0
+    container_name: nginx
+    ports:
+      - "443:443"
+
+  # mariadb:
+  #   build: ./requirements/mariadb
+
+  # wordpress:
+  #   build: ./requirements/wordpress 
