@@ -103,3 +103,5 @@ docker run -d mariadb:1.0
 docker exec -it 359 mysql -u root -p -e "SHOW DATABASES;"
 
 docker system prune -a
+
+docker rmi $(docker image ls -q)
