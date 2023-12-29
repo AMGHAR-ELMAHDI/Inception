@@ -15,7 +15,6 @@ PHP-FPM (FastCGI Process Manager) is a PHP FastCGI implementation that provides 
 PHP-FPM works by managing a pool of PHP worker processes that handle incoming PHP requests. This approach is more efficient compared to starting a new PHP process for each request, as PHP-FPM keeps the worker processes alive and ready to handle multiple requests.
 ----------------------------------------------------------------------------------------
 
-
 NGINX with TLSv1.2:
 
 NGINX is a popular web server and reverse proxy server that supports TLS (Transport Layer Security) for secure communications over the internet. By default, NGINX supports TLS 1.2 and higher versions, which are considered more secure than older versions.
