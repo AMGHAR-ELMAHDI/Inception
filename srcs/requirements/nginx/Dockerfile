@@ -17,7 +17,6 @@ RUN     mkdir -p /run/nginx
 EXPOSE	443
 COPY    ./tools/script.sh .
 
-# CMD     ["bash","-c","nginx", "-g", "daemon off;", "||", "bash"]
-CMD     ["bash","./script.sh"]
+CMD     ["nginx", "-g", "daemon off;"]
 
 # RUN     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

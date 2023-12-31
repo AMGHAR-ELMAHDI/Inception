@@ -20,7 +20,7 @@ RUN     echo "bind-address =0.0.0.0" >> /etc/my.cnf.d/docker.cnf
 EXPOSE  3306
 COPY    ./tools/script.sh .
 RUN     chmod +x script.sh
-# RUN     sh ./script.sh
+
 CMD     ["./script.sh"]
 
 # # RUN     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
