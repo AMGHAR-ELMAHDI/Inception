@@ -3,19 +3,21 @@ FROM    debian:oldstable
 RUN     apt update -y && apt upgrade -y && apt install -y nginx openssl
 RUN     rm -rf /etc/nginx/sites-available/default && mkdir -p /etc/nginx/ssl 
 
-COPY    ./conf/nginx.conf /etc/nginx/nginx.conf
 COPY    ./tools/index.html /etc/nginx/
 
 RUN     openssl req -x509 -new -newkey rsa:2048 -nodes \
-        -keyout /etc/nginx/ssl/eamghar.key \
         -out /etc/nginx/ssl/eamghar.crt \
+        -keyout /etc/nginx/ssl/eamghar.key \
         -subj "/C=MA/ST=Béni Mellal-Khénifra/L=Khouribga/O=42/OU=42/CN=eamghar.42.fr/UID=eamghar"
 
-RUN     service nginx start
+COPY    ./conf/nginx.conf /etc/nginx/
 
-EXPOSE  443
+RUN     mkdir -p /run/nginx
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE	443
+COPY    ./tools/script.sh .
 
+# CMD     ["bash","-c","nginx", "-g", "daemon off;", "||", "bash"]
+CMD     ["bash","./script.sh"]
 
 # RUN     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

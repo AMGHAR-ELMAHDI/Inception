@@ -1,21 +1,62 @@
 services:
-
   nginx:
+    container_name: nginx
     build: ./requirements/nginx
     image: nginx
-    container_name: nginx
     ports:
-      - "443:443"
+      - 443:443
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress_data:/var/www/html
     restart: always
+    networks:
+      - network
 
   mariadb:
+    container_name: mariadb
     build: ./requirements/mariadb
     image: mariadb
-    container_name: mariadb
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - network
+    restart: always
     env_file:
       - .env
+
+  wordpress:
+    container_name: wordpress
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    image: wordpress
+    depends_on:
+      - mariadb
     restart: always
+    env_file:
+      - .env
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - network
+
+volumes:
+  mariadb_data:
+    driver_opts:
+      type: none
+      device: /Users/eamghar/mysql
+      o: bind
+  wordpress_data:
+    driver_opts:
+      type: none
+      device: /Users/eamghar/wordpress
+      o: bind
+
+networks:
+  network:
+    driver: bridge
 
 
-  # wordpress:
-  #   build: ./requirements/wordpress
+      # device: /home/eamghar/data/wordpress
+      # device: /home/eamghar/data/mysql
