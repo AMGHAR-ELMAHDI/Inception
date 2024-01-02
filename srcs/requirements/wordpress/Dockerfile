@@ -10,8 +10,17 @@ ENV     MYSQL_ROOT_PASSWORD=1337
 ENV     MYSQL_USER=eamghar
 ENV     MYSQL_PASSWORD=1337
 
-RUN     apt update -y && apt upgrade -y && apt install -y vim curl git zsh wget unzip zip
-RUN     apt install -y php php-fpm php-mysqli php-cgi php-mysql php-pdo php-gd php-cli php-mbstring php-redis redis && rm -rf /var/lib/apt/lists/*
+RUN     apt update -y && apt upgrade -y
+RUN     apt install -y vim curl git zsh wget unzip zip
+RUN     apt install -y php\
+        php-fpm php-mysqli\
+        php-cgi php-mysql \
+        php-pdo php-gd    \
+        php-cli           \
+        php-mbstring      \
+        php-redis redis   
+
+RUN     rm -rf /var/lib/apt/lists/*
 
 RUN     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
         && chmod +x wp-cli.phar \
@@ -19,19 +28,12 @@ RUN     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp
 
 RUN     sed -i "s|listen = /run/php/php7.4-fpm.sock|listen = 9000|g" /etc/php/7.4/fpm/pool.d/www.conf
 
-RUN     mkdir -p /run/php/
+RUN     wp core download  --allow-root
 
-COPY    ./tools/script.sh /usr/local/bin/
-RUN     chmod +x /usr/local/bin/script.sh
+RUN     wp config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=mariadb --allow-root
+RUN     wp core --allow-root install --url=$DOMAIN_NAME --title=$DOMAIN_NAME --admin_user=$MYSQL_USER --admin_password=$MYSQL_ROOT_PASSWORD --admin_email=amgharmahdi1@gmail.com
 
-RUN     sh /usr/local/bin/script.sh
-
-WORKDIR /var/www
 EXPOSE  9000
-# COPY    ./tools/scr.sh .
-# RUN     chmod +x scr.sh && ./scr.sh
 
 CMD ["/usr/sbin/php-fpm7.4", "-F"]
-
-# # RUN     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 

@@ -12,7 +12,7 @@ else
 	rm -rf latest.tar.gz
 	rm -rf wordpress
 
-	#Inport env variables in the config file
+	#Import env variables in the config file
 	sed -i "s/username_here/$MYSQL_USER/g" wp-config-sample.php
 	sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config-sample.php
 	sed -i "s/localhost/$DOMAIN_NAME/g" wp-config-sample.php

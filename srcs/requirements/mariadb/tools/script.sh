@@ -11,4 +11,4 @@ mysqladmin shutdown -p${MYSQL_ROOT_PASSWORD}
 sleep 5
 mysqld_safe
 
-# # docker exec -it 359 mysql -u root -p -e "SHOW DATABASES;"
+# # docker exec -it 359 mysql -u root -p -e "SHOW DATABASES;"∆
