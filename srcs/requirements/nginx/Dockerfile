@@ -15,7 +15,6 @@ COPY    ./conf/nginx.conf /etc/nginx/
 RUN     mkdir -p /run/nginx
 
 EXPOSE	443
-COPY    ./tools/script.sh .
 
 CMD     ["nginx", "-g", "daemon off;"]
 

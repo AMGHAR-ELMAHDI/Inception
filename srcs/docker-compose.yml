@@ -21,9 +21,9 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - network
-    restart: always
     env_file:
       - .env
+    restart: always
 
   wordpress:
     container_name: wordpress
