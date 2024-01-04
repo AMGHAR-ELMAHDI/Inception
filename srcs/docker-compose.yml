@@ -2,7 +2,7 @@ services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx
-    image: nginx
+    image: nginx:inception
     ports:
       - 443:443
     depends_on:
@@ -16,9 +16,11 @@ services:
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
-    image: mariadb
+    image: mariadb:inception
     volumes:
       - mariadb_data:/var/lib/mysql
+    ports:
+      - 3306:3306
     networks:
       - network
     env_file:
@@ -30,7 +32,9 @@ services:
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
-    image: wordpress
+    image: wordpress:inception
+    ports:
+      - 9000:9000
     depends_on:
       - mariadb
     restart: always
@@ -41,27 +45,31 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - network
-  
+
   adminer:
     container_name: adminer
-    image: adminer
-    restart: always
+    build: ./requirements/bonus/adminer
+    image: adminer:inception
     ports:
       - 8080:8080
     networks:
       - network
+    env_file:
+      - .env
+    restart: always
+
 
 volumes:
   mariadb_data:
     driver_opts:
+      o: bind
       type: none
       device: /Users/eamghar/mysql
-      o: bind
   wordpress_data:
     driver_opts:
+      o: bind
       type: none
       device: /Users/eamghar/wordpress
-      o: bind
 
 networks:
   network:

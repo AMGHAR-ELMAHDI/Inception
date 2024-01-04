@@ -4,9 +4,6 @@ EXPOSE  9000
 
 ARG     MYSQL_DATABASE MYSQL_USER MYSQL_PASSWORD
 
-# WORKDIR /var/lib/mysql
-# RUN     rm -rf *
-
 WORKDIR /var/www
 RUN     rm -rf *
 
@@ -33,9 +30,5 @@ COPY    ./tools/script.sh .
 RUN     chmod +x script.sh
 
 CMD     [ "./script.sh" ]
-# ENTRYPOINT ["/usr/sbin/php-fpm7.4", "-F"]
-
-# ENTRYPOINT [ "tail", "-f", "/dev/null" ]
-
 
 # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
