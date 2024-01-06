@@ -29,9 +29,7 @@ services:
 
   wordpress:
     container_name: wordpress
-    build:
-      context: ./requirements/wordpress
-      dockerfile: Dockerfile
+    build: ./requirements/wordpress
     image: wordpress:inception
     ports:
       - 9000:9000
@@ -46,12 +44,40 @@ services:
     networks:
       - network
 
+  redis:
+    container_name: redis
+    build: ./requirements/bonus/redis
+    image: redis:inception
+    ports:
+      - 7546:7546
+    depends_on:
+      - wordpress
+    networks:
+      - network
+    env_file:
+      - .env
+    restart: always
+
   adminer:
     container_name: adminer
     build: ./requirements/bonus/adminer
     image: adminer:inception
+    depends_on:
+      - mariadb
     ports:
       - 8080:8080
+    networks:
+      - network
+    env_file:
+      - .env
+    restart: always
+
+  website:
+    container_name: website
+    build: ./requirements/bonus/website
+    image: website:inception
+    ports:
+      - 7546:7546
     networks:
       - network
     env_file:
