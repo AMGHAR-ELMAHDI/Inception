@@ -1,6 +1,6 @@
 FROM    debian:oldstable
 
-RUN     apt update -y && apt upgrade -y && apt install -y nginx openssl curl git zsh wget 
+RUN     apt update -y && apt upgrade -y && apt install -y nginx openssl
 RUN     rm -rf /etc/nginx/sites-available/default && mkdir -p /etc/nginx/ssl 
 
 RUN     openssl req -x509 -new -newkey rsa:2048 -nodes \
