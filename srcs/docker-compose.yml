@@ -45,75 +45,75 @@ services:
     networks:
       - network
 
-  # ftp:
-  #   container_name: ftp
-  #   build: ./requirements/bonus/ftp
-  #   image: ftp:inception
-  #   depends_on:
-  #     - wordpress
-  #   ports:
-  #     - 21:21
-  #   volumes:
-  #     - wordpress_data:/var/www
-  #   networks:
-  #     - network
-  #   env_file:
-  #     - .env
-  #   restart: always
+  ftp:
+    container_name: ftp
+    build: ./requirements/bonus/ftp
+    image: ftp:inception
+    depends_on:
+      - wordpress
+    ports:
+      - 21:21
+    volumes:
+      - wordpress_data:/var/www
+    networks:
+      - network
+    env_file:
+      - .env
+    restart: always
     
-  # portainer:
-  #   container_name: portainer
-  #   build: ./requirements/bonus/portainer
-  #   image: portainer:inception
-  #   ports:
-  #     - 9443:9443
-  #   volumes:
-  #     - wordpress_data:/var/lib/portainer
-  #   networks:
-  #     - network
-  #   env_file:
-  #     - .env
-  #   restart: always
+  portainer:
+    container_name: portainer
+    build: ./requirements/bonus/portainer
+    image: portainer:inception
+    ports:
+      - 9443:9443
+    volumes:
+      - wordpress_data:/var/lib/portainer
+    networks:
+      - network
+    env_file:
+      - .env
+    restart: always
 
-  # redis:
-  #   container_name: redis
-  #   build: ./requirements/bonus/redis
-  #   image: redis:inception
-  #   ports:
-  #     - 6379:6379
-  #   volumes:
-  #     - wordpress_data:/var/www
-  #   networks:
-  #     - network
-  #   env_file:
-  #     - .env
-  #   restart: always
+  redis:
+    container_name: redis
+    build: ./requirements/bonus/redis
+    image: redis:inception
+    ports:
+      - 6379:6379
+    volumes:
+      - wordpress_data:/var/www
+    networks:
+      - network
+    env_file:
+      - .env
+    restart: always
 
-  # adminer:
-  #   container_name: adminer
-  #   build: ./requirements/bonus/adminer
-  #   image: adminer:inception
-  #   depends_on:
-  #     - mariadb
-  #   ports:
-  #     - 8080:8080
-  #   networks:
-  #     - network
-  #   env_file:
-  #     - .env
-  #   restart: always
+  adminer:
+    container_name: adminer
+    build: ./requirements/bonus/adminer
+    image: adminer:inception
+    depends_on:
+      - mariadb
+    ports:
+      - 8080:8080
+    networks:
+      - network
+    env_file:
+      - .env
+    restart: always
 
-  # website:
-  #   container_name: website
-  #   build: ./requirements/bonus/website
-  #   image: website:inception
-  #   ports:
-  #     - 7546:7546
-  #   networks:
-  #     - network
-  #   env_file:
-  #     - .env
-  #   restart: always
+  website:
+    container_name: website
+    build: ./requirements/bonus/website
+    image: website:inception
+    ports:
+      - 7546:7546
+    networks:
+      - network
+    env_file:
+      - .env
+    restart: always
 
 
 volumes:
@@ -121,13 +121,13 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /Users/eamghar/mysql
+      device: /Users/eamghar/mariadb
 
   wordpress_data:
     driver_opts:
       o: bind
       type: none
-      device: /Users/eamghar/wordpress
+      device: /Users/eamghar/wordpress1
 
   portainer_data:
     driver_opts:

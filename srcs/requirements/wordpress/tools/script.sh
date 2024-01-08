@@ -15,4 +15,8 @@ wp config set WP_REDIS_CLIENT phpredis --allow-root
 wp plugin update --all --allow-root
 wp redis enable --allow-root
 
+echo "define('FS_METHOD', 'direct');" >> /var/www/wp-config.php
+echo "define('FS_CHMOD_DIR', 0775);" >> /var/www/wp-config.php
+echo "define('FS_CHMOD_FILE', 0664);" >> /var/www/wp-config.php
+
 /usr/sbin/php-fpm7.4 -F
