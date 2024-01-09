@@ -1,9 +1,8 @@
 FROM    debian:oldstable
 
-EXPOSE  9443
-EXPOSE  9001
+# EXPOSE  9443
 
-RUN     apt update -y && apt upgrade -y && apt install -y vim wget curl zsh git tar
+RUN     apt update -y && apt upgrade -y && apt install -y wget tar
 
 RUN     mkdir -p /var/lib/portainer
 

@@ -41,7 +41,6 @@ services:
       - .env
     volumes:
       - wordpress_data:/var/www
-      - mariadb_data:/var/lib/mysql
     networks:
       - network
 
@@ -54,21 +53,7 @@ services:
     ports:
       - 21:21
     volumes:
-      - wordpress_data:/var/www
-    networks:
-      - network
-    env_file:
-      - .env
-    restart: always
-    
-  portainer:
-    container_name: portainer
-    build: ./requirements/bonus/portainer
-    image: portainer:inception
-    ports:
-      - 9443:9443
-    volumes:
-      - wordpress_data:/var/lib/portainer
+      - wordpress_data:/var/www/
     networks:
       - network
     env_file:
@@ -103,6 +88,23 @@ services:
       - .env
     restart: always
 
+  portainer:
+    container_name: portainer
+    build: ./requirements/bonus/portainer
+    image: portainer:inception
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    ports:
+      - 9443:9443
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - network
+    restart: always
+
   website:
     container_name: website
     build: ./requirements/bonus/website
@@ -121,19 +123,13 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /Users/eamghar/mariadb
+      device: /Users/eamghar/Desktop/Inception/data/mariadb
 
   wordpress_data:
     driver_opts:
       o: bind
       type: none
-      device: /Users/eamghar/wordpress1
-
-  portainer_data:
-    driver_opts:
-      o: bind
-      type: none
-      device: /Users/eamghar/portainer
+      device: /Users/eamghar/Desktop/Inception/data/wp
 
 networks:
   network:
@@ -142,4 +138,3 @@ networks:
 
       # device: /home/eamghar/data/wordpress
       # device: /home/eamghar/data/mysql
-      # device: /home/eamghar/data/portainer
