@@ -5,7 +5,7 @@ EXPOSE  21
 ENV     FTP_USER=eamghar
 ENV     FTP_PASSWORD=1337
 
-RUN     apt update -y && apt upgrade -y && apt install -y vsftpd vim zsh git curl wget ftp
+RUN     apt update -y && apt upgrade -y && apt install -y vsftpd ftp
 
 COPY    ./tools/scr.sh .
 RUN     chmod +x scr.sh

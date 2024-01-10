@@ -6,8 +6,6 @@ ARG     MYSQL_DATABASE MYSQL_ROOT_USER MYSQL_ROOT_PASSWORD
 
 WORKDIR /var/www
 RUN     rm -rf *
-# RUN     find . -type f ! -name 'filename.txt' -exec rm {} +
-
 
 RUN     apt update -y && apt upgrade -y
 RUN     apt install -y vim curl git zsh wget unzip zip
@@ -18,8 +16,6 @@ RUN     apt install -y php\
         php-cli           \
         php-mbstring      \
         php-redis redis   
-
-# RUN     rm -rf /var/lib/apt/lists/*
 
 RUN     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
         && chmod +x wp-cli.phar \
@@ -33,5 +29,3 @@ COPY    ./tools/script.sh .
 RUN     chmod +x script.sh
 
 CMD     [ "./script.sh" ]
-
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

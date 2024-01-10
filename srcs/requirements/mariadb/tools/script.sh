@@ -9,4 +9,4 @@ echo  "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE; GRANT ALL ON $MYSQL_DATABA
 mysqladmin shutdown -p${MYSQL_ROOT_PASSWORD}
 mysqld_safe
 
-# # docker exec -it 359 mysql -u root -p -e "SHOW DATABASES;"
+#mysql -u root -p -e "SHOW DATABASES;"
