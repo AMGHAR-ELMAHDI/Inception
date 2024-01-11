@@ -1,7 +1,5 @@
 FROM    debian:oldstable
 
-EXPOSE  21
-
 ENV     FTP_USER=eamghar
 ENV     FTP_PASSWORD=1337
 

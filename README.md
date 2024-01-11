@@ -93,7 +93,7 @@ By default, the bind-address is set to 127.0.0.1, which means the database serve
 
 When we replace bind-address = 127.0.0.1 with bind-address = 0.0.0.0, it changes the configuration to make the database server listen on all available network interfaces. In other words, it allows incoming connections from any IP address, including remote machines.
 
-This change can be useful if we want to access the MariaDB/MySQL server from other computers on the network or allow remote connections. However, it also introduces potential security risks, as it exposes the database server to external connections. It's important to consider the security implications and take appropriate measures, such as setting up a firewall or configuring access controls, to protect our database server from unauthorized access.
+This change can be useful if we want to access the MariaDB/MySQL server from other computers on the network or allow remote connections. However, it also introduces potential security risks, as it s the database server to external connections. It's important to consider the security implications and take appropriate measures, such as setting up a firewall or configuring access controls, to protect our database server from unauthorized access.
 ----------------------------------------------------------------------------------------
 
 

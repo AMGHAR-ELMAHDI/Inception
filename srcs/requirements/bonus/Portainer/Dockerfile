@@ -1,7 +1,5 @@
 FROM    debian:oldstable
 
-# EXPOSE  9443
-
 RUN     apt update -y && apt upgrade -y && apt install -y wget tar
 
 RUN     mkdir -p /var/lib/portainer
@@ -13,4 +11,3 @@ RUN     tar -xf portainer.tar.gz && rm portainer.tar.gz && mv portainer /usr/loc
 
 CMD     [ "/usr/local/portainer/portainer" ]
 
-# # RUN     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

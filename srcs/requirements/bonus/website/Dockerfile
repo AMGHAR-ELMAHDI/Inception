@@ -2,8 +2,6 @@ FROM    debian:oldstable
 
 WORKDIR /var/www
 
-EXPOSE  7546
-
 RUN     apt update -y && apt upgrade -y && apt install -y nginx
 
 RUN     rm -rf /etc/nginx/sites-available/default

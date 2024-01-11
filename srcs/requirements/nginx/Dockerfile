@@ -12,8 +12,6 @@ COPY    ./conf/nginx.conf /etc/nginx/sites-available/default
 
 RUN     mkdir -p /run/nginx
 
-EXPOSE	443
-
 CMD     ["nginx", "-g", "daemon off;"]
 
 # RUN     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
