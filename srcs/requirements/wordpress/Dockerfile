@@ -9,13 +9,7 @@ RUN     rm -rf *
 
 RUN     apt update -y && apt upgrade -y
 RUN     apt install -y vim curl git zsh wget unzip zip
-RUN     apt install -y php\
-        php-fpm php-mysqli\
-        php-cgi php-mysql \
-        php-pdo php-gd    \
-        php-cli           \
-        php-mbstring      \
-        php-redis redis   
+RUN     apt install -y php-fpm php-mysql  php-redis redis
 
 RUN     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
         && chmod +x wp-cli.phar \
