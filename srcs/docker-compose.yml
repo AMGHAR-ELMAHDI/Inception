@@ -123,7 +123,7 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /Users/eamghar/Desktop/Inception/data/mariadb
+      device: /Users/eamghar/Desktop/Inception/data/db
 
   wordpress_data:
     driver_opts:

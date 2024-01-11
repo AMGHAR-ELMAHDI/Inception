@@ -1,6 +1,6 @@
 #!/bin/sh
 mysql_install_db
-mysqld_safe  & 
+mysqld_safe  &
 sleep 5
 
 echo  "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE; GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_ROOT_USER'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';" \
