@@ -9,6 +9,3 @@ COPY    ./tools/scr.sh .
 RUN     chmod +x scr.sh
 
 CMD     ["./scr.sh"]
-
-# # RUN     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# docker exec -it 359 mysql -u root -p -e "SHOW DATABASES;"
