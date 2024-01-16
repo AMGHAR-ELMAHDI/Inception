@@ -90,13 +90,8 @@ services:
 
   portainer:
     container_name: portainer
-    build: ./requirements/bonus/portainer
+    build: ./requirements/bonus/Portainer
     image: portainer:inception
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
     ports:
       - 9443:9443
     volumes:
@@ -123,18 +118,14 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /Users/eamghar/Desktop/Inception/data/db
+      device:  /home/eamghar/data/db
 
   wordpress_data:
     driver_opts:
       o: bind
       type: none
-      device: /Users/eamghar/Desktop/Inception/data/wp
+      device:  /home/eamghar/data/wp
 
 networks:
   network:
     driver: bridge
-
-
-      # device: /home/eamghar/data/wordpress
-      # device: /home/eamghar/data/mysql

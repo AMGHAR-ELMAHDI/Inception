@@ -8,5 +8,3 @@ echo  "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE; GRANT ALL ON $MYSQL_DATABA
 
 mysqladmin shutdown -p${MYSQL_ROOT_PASSWORD}
 mysqld_safe
-
-#mysql -u root -p -e "SHOW DATABASES;"

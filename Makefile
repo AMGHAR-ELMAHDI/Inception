@@ -1,28 +1,28 @@
-NAME = inception
 
-all:
-	docker-compose -f ./srcs/docker-compose.yml up -d
+create:
+	sudo mkdir -p /home/eamghar/data/wp
+	sudo mkdir -p /home/eamghar/data/db
+	sudo chmod 777 /home/eamghar/data/wp
+	sudo chmod 777 /home/eamghar/data/db
 
-build:
-	docker-compose -f ./srcs/docker-compose.yml up -d --build
+all: create
+	sudo docker-compose -f ./srcs/docker-compose.yml up -d
+
+build: create
+	sudo docker-compose -f ./srcs/docker-compose.yml up -d --build
 
 start:
-	docker-compose -f ./srcs/docker-compose.yml start
+	sudo docker-compose -f ./srcs/docker-compose.yml start
 
 down:
-	docker-compose -f ./srcs/docker-compose.yml down
+	sudo docker-compose -f ./srcs/docker-compose.yml down
 
 stop:
-	docker-compose -f ./srcs/docker-compose.yml stop
+	sudo docker-compose -f ./srcs/docker-compose.yml stop
 
-re: stop start
-
-clean:
-	docker stop $(docker ps -a -q)
-	docker rm $(docker ps -a -q)
-	docker rmi $(docker image ls -q)
-	docker volume rm $(docker volume ls -q)
-	rm -rf /Users/eamghar/mysql/*
-	rm -rf /Users/eamghar/wordpress/*
-	docker network prune --force
-	docker system prune --all --force --volumes
+fclean: down stop
+	sudo docker stop $(docker ps -a -q)
+	sudo docker rm $(docker ps -a -q)
+	sudo docker rmi $(docker image ls -q)
+	sudo rm -rf /home/eamghar/data/*
+	
