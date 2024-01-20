@@ -8,18 +8,6 @@ create:
 all: create
 	sudo docker-compose -f ./srcs/docker-compose.yml up -d
 
-build: create
-	sudo docker-compose -f ./srcs/docker-compose.yml up -d --build
-
-start:
-	sudo docker-compose -f ./srcs/docker-compose.yml start
-
-down:
-	sudo docker-compose -f ./srcs/docker-compose.yml down
-
-stop:
-	sudo docker-compose -f ./srcs/docker-compose.yml stop
-
 fclean: down stop
 	sudo docker stop $(docker ps -a -q)
 	sudo docker rm $(docker ps -a -q)

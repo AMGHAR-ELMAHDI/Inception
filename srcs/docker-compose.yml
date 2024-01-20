@@ -20,8 +20,6 @@ services:
     image: mariadb:inception
     volumes:
       - mariadb_data:/var/lib/mysql
-    ports:
-      - 3306:3306
     networks:
       - network
     env_file:
@@ -32,8 +30,6 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress
     image: wordpress:inception
-    ports:
-      - 9000:9000
     depends_on:
       - mariadb
     restart: always
