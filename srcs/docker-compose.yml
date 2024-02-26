@@ -114,13 +114,13 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device:  /home/eamghar/data/db
+      device:  /$PWD/wp
 
   wordpress_data:
     driver_opts:
       o: bind
       type: none
-      device:  /home/eamghar/data/wp
+      device:  /$PWD/db
 
 networks:
   network:
