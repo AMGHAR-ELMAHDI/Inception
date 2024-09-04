@@ -1,5 +1,4 @@
 services:
-
   nginx:
     container_name: nginx
     build: ./requirements/nginx
@@ -108,19 +107,9 @@ services:
       - .env
     restart: always
 
-
 volumes:
-  mariadb_data:
-    driver_opts:
-      o: bind
-      type: none
-      device:  /$PWD/wp
-
-  wordpress_data:
-    driver_opts:
-      o: bind
-      type: none
-      device:  /$PWD/db
+  mariadb_data: {}
+  wordpress_data: {}
 
 networks:
   network:
